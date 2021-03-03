@@ -1,109 +1,30 @@
-.hidden {
-    display: none
-}
-
-body.dark {
-    background-color: #333333;
-    color: beige;
-}
-
-header {
-    text-align: center;
-    padding: 10px;
-    border-bottom: 1px solid black;
-}
-
-h1 {
-    font-size: 45pt;
-}
-
-#setupGame, #game {
-    display: flex;
-    justify-content: center;
-}
-
-#setupGame>* {
-    margin-bottom: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
-    display: flex;
-    align-items: center;
-}
-
-button {
-    background: rgb(125, 125, 255);
-    justify-self: center;
-}
-
-#timer {
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-}
-
-#numbers>p {
-    border: 1px solid black;
-    border-radius: 20%;
-    height: 60px;
-    width: 60px;
-    font-size: 40pt;
-    margin-left: 50px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-#board {
-    padding-top: 10px;
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    justify-content: flex-start;
-    width: 600px;
-    height: 600px;
+:root {
+    --var-grid-color: #000;
+    --var-button-color: #7d7dff;
+    --var-background-color: #FFF;
+    --var-background-dark-color: #000;
 }
 
 .tile {
-    border: 1px solid black;
-    width: 60px;
-    text-align: center;
-    margin: 0px;
-    vertical-align: middle;
-    font-size: 40pt;
+    position: relative;
 }
 
-.blockOne {}
-.blockTwo {}
-.blockThree {}
-.blockFour {}
-.blockFive {}
-.blockTSix {}
-.blockSeven {}
-.blockEight {}
-.blockNine {}
-
-div.selectedNine {
-    background-color: rgb(200, 200, 250);
+.tile:after {
+/* Shows tile id in each tile  */
+    position: absolute;
+    content: attr("data-src");
+    top: 0;
+    right: 0;
 }
 
-div.selectedTile {
-    background-color: rgb(180, 180, 255);
+.block {
+    position: relative;
+}
+.block:after {
+    position: absolute;
+    content: attr("id");
 }
 
-p.incorrect {
-    background-color: red
-}
-
-.rightBorder {
-    border-right: 5px solid black;
-}
-
-.bottomBorder {
-    border-bottom: 5px solid black;
-}
-
-footer {
-    background-color: rgb(125, 125, 255);
-    text-align: center;
-}
+#sudoku {}
+#timer {}
+#start {}
