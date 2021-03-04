@@ -17,51 +17,74 @@ function startGame() {
     // Triggered by the DOM event onclick, specified in HTML file.
 }
 
+    grid.innerHTML = generateGrid(9);
+// TODO decide if we even need guides?
+function checkGuides(checkbox) {
+
+    if(checkbox.checked) {
+	
+    } else {
+	
+    }
+
+}
+
 window.addEventListener("keydown", event => {
     if (!isNaN(event.key)) { // if it's a number (isNaN = is Not a Nunmber)
-        cursor_pointer(event.key);
+        cursorPointer(event.key);
     }
+
 });
 
-// Highlight the block if no block is selected, otherwise it will be a tile
+
+// FIXME problems with block being null or literal zero.
+// Highlights the current block/tile.
 function cursorPointer(number) {
     // ternary operator; if we have block selected,
     // let block = tile, else block = block.
 
     let block = cursor.block ?
-    document.getElementById("t"+cursor.block+cursor.tile) :
+    document.getElementById("t"+cursor.tile) :
     document.getElementById(number);
 
-    block.classList.add("highlight");
     // We don't have a block selected, select the block.
     if(!cursor.block) {
+	cursor.block = number;
         block.classList.add("highlight");    
-    } else if (cursor.block) {
+    } else if (cursor.block && !cursor.tile) {
         // We're now selecting the tile but before we must
         // remove the highlight class from the parent.
-        block.parentNode.classList.remove("highlight");
+	console.log(typeof(block));
+	cursor.tile = cursor.block+number;
+	block = document.getElementById("t"+cursor.tile);
+        block.parentElement.classList.remove("highlight");
         block.classList.add("highlight");
     } else if(cursor.block && cursor.tile) {
         // We have the block and tile selected, time to enter value
         // EXCEPTION: if value is 0 then we delete the value from the tile
-        number == "0" ? tile.textContent = "" : tile.textContent = number;
-
+        number == "0" ? block.textContent = "" : block.textContent = number;
+	block.classList.remove("highlight");
 	cursor.block = 0;
 	cursor.tile = 0;
     }   
 
 }
 
-// TODO create createBlock()
+function createBlock(blockId) {
+    let block = '<div id="'+blockId+'" class="block">';
+    for(let i = 0; i < 9; i++) {
+	var r = Math.random() < 0.5;
+	block += '<div id="t'+blockId+GRID_POSITION_ARRAY[i]+'"data-tile="'+blockId+GRID_POSITION_ARRAY[i]+'"class="tile">'+ (!r ? "1":"")+'</div>';	
+    }
+    block += "</div>";
+    return block;
+}
 
-
-
-function generateTable(sudokuSize) {
+function generateGrid(sudokuSize) {
     let sudokuGrid = "";
     for (let i = 0; i < sudokuSize; i ++) {
-        sudokuGrid += createBlock(TABLE_POSITION_ARRAY[i]);
+        sudokuGrid += createBlock(GRID_POSITION_ARRAY[i]);
     }
     return sudokuGrid;
 }
 
-grid.innerHTML = generateTable(9);

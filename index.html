@@ -3,40 +3,36 @@
 <head>
     <meta charset="utf-8" />
     <title>Keyboard Sudoku</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="index.js"></script>
 </head>
-
-<header>
-    <h1>Keyboard Sudoku</h1>
-    <div id="timer">00:00</div>
-    <label>Theme:
-    <select id="theme">
-	<option value="light">Light</option>
-	<option value="gray">Gray</option>
-	<option value="dark">Dark</option>
-    </select></label>
-
-    <label>Difficulty:
-    <select id="difficulty">
-	<option value="easy">Easy</option>
-	<option value="medium">Medium</option>
-	<option value="hard">Hard</option>
-    </select></label>
-    <input type="checkbox" id="guides"/>
-    <label for="guides">Show guides</label>
-    <input type="text" name="seed" id="seed" placeholder="seed" />
-</header>
-
 <body>
-    <div id="sudoku">
+    <header>
+	<h1 style="margin: 0;">Keyboard Sudoku</h1>
+	<label>Theme:
+	<select id="theme">
+	    <option value="light">Light</option>
+	    <option value="gray">Gray</option>
+	    <option value="dark">Dark</option>
+	</select></label>
+
+	<label>Difficulty:
+	<select id="difficulty">
+	    <option value="easy">Easy</option>
+	    <option value="medium">Medium</option>
+	    <option value="hard">Hard</option>
+	</select></label>
+	<input type="checkbox" name="guides" onclick="checkGuides"/>
+	<label for="guides">Show guides</label>
+	<input type="text" name="seed" id="seed" placeholder="seed" />
+	<div id="timer">00:00</div>
 	<button id="start" onclick="startGame()">Play</button>
-    </div>
+    </header>
+    <div id="sudoku"></div>
+    <!-- TODO: make fontsize etc responsive! -->
+    <footer>
+	<code>made by vulpes code</code>
+    </footer>
+    <script src="index.js"></script>
 </body>
-
-<!-- TODO: make fontsize etc responsive! -->
-
-<footer>
-    <P>made by vulpes code</P>
-</footer>
 </html>
